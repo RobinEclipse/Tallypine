@@ -51,7 +51,7 @@ The generated files are placed in `release-electron` and copied to the workspace
 
 ## Development transparency
 
-Tallypine was created with help from AI-assisted development tools. The project owner reviews and controls the code, releases, and product decisions.
+Tallypine was created with help from AI-assisted development tools. The project owner reviews and controls the code, releases, and product decisions. This was made purely for personal use but it was decided to release it publicly. 
 
 ## License
 
