@@ -102,7 +102,7 @@ describe("Tallypine ledger", () => {
     database.close();
     database = new LedgerDatabase(path);
     expect(database.settings().customTheme).toEqual(custom);
-    expect(existsSync(`${path}.pre-electron-1.0.tpbackup`)).toBe(true);
+    expect(existsSync(`${path}.pre-migration-1.0.tpbackup`)).toBe(true);
   });
 
   it("creates and restores a verified complete backup", () => {

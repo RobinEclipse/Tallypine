@@ -477,7 +477,7 @@ export class LedgerDatabase {
   }
 
   private createPreElectronBackup(): void {
-    const backup = `${this.path}.pre-electron-1.0.tpbackup`;
+    const backup = `${this.path}.pre-migration-1.0.tpbackup`;
     if (existsSync(backup)) return;
     const check = this.database.prepare("PRAGMA quick_check").get() as Row | undefined;
     if (!check || String(check.quick_check) !== "ok") throw new Error("Your existing Tallypine database did not pass its safety check.");

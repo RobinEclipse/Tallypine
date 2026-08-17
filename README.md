@@ -1,6 +1,6 @@
-# Tallypine 1.0: Electron edition
+# Tallypine 1.0
 
-Tallypine is a private, offline Windows transaction tracker. This edition replaces the old Tk/CustomTkinter interface with a single Chromium-rendered Electron window, while keeping the existing SQLite database format.
+Tallypine is a private, offline Windows transaction tracker built as a single Electron application with a local SQLite database.
 
 ## What stays the same
 
@@ -13,10 +13,6 @@ Tallypine is a private, offline Windows transaction tracker. This edition replac
 ## Development transparency
 
 Tallypine was created with help from AI-assisted development tools. The project owner reviews and controls the code, releases, and product decisions.
-
-Before opening an existing database for the first time, this edition creates:
-
-`%LOCALAPPDATA%\Tallypine\tallypine.db.pre-electron-1.0.tpbackup`
 
 ## Why the interface is smoother
 
