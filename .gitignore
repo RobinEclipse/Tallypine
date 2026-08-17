@@ -1,0 +1,10 @@
+node_modules/
+dist/
+dist-electron/
+release/
+release-electron/
+.smoke-*/
+*.db
+*.db-*
+*.tpbackup
+*.log
