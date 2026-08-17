@@ -145,10 +145,10 @@ export function Dashboard(props: DashboardProps) {
             <aside className="summary-card card">
               <div className="card-heading summary-heading"><div><h2>Summary</h2><p>Your balance and selected-period totals</p></div></div>
               <div className="stats-grid">
-                <StatCard className="balance" title="BALANCE NOW" value={summary ? formatMoney(summary.currentBalanceUnits, currency) : "—"} subtitle="Current total" icon={<WalletCards size={18} />} />
-                <StatCard className="income" title="MONEY IN" value={summary ? formatMoney(summary.incomeUnits, currency) : "—"} subtitle="Selected period" icon={<ArrowDownLeft size={18} />} />
-                <StatCard className="net" title="NET CHANGE" value={summary ? formatMoney(summary.netUnits, currency, true) : "—"} subtitle="Money in minus money out" icon={<Layers3 size={18} />} />
-                <StatCard className="expense" title="MONEY OUT" value={summary ? formatMoney(summary.expenseUnits, currency) : "—"} subtitle="Selected period" icon={<ArrowUpRight size={18} />} />
+                <StatCard className="balance" title="BALANCE NOW" value={summary ? formatMoney(summary.currentBalanceUnits, currency) : "-"} subtitle="Current total" icon={<WalletCards size={18} />} />
+                <StatCard className="income" title="MONEY IN" value={summary ? formatMoney(summary.incomeUnits, currency) : "-"} subtitle="Selected period" icon={<ArrowDownLeft size={18} />} />
+                <StatCard className="net" title="NET CHANGE" value={summary ? formatMoney(summary.netUnits, currency, true) : "-"} subtitle="Money in minus money out" icon={<Layers3 size={18} />} />
+                <StatCard className="expense" title="MONEY OUT" value={summary ? formatMoney(summary.expenseUnits, currency) : "-"} subtitle="Selected period" icon={<ArrowUpRight size={18} />} />
               </div>
             </aside>
           </section>

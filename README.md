@@ -1,4 +1,4 @@
-# Tallypine 1.0 — Electron edition
+# Tallypine 1.0: Electron edition
 
 Tallypine is a private, offline Windows transaction tracker. This edition replaces the old Tk/CustomTkinter interface with a single Chromium-rendered Electron window, while keeping the existing SQLite database format.
 
@@ -9,6 +9,10 @@ Tallypine is a private, offline Windows transaction tracker. This edition replac
 - Starting balance, transactions, categories, reports, currencies, themes, CSV export, and `.tpbackup` backups are preserved.
 - Dates begin at 2026 and future dates remain blocked.
 - The product and data version remain Tallypine 1.0.
+
+## Development transparency
+
+Tallypine was created with help from AI-assisted development tools. The project owner reviews and controls the code, releases, and product decisions.
 
 Before opening an existing database for the first time, this edition creates:
 
@@ -31,10 +35,10 @@ npm run dev
 
 The main source areas are:
 
-- `src/` — React interface, charts, themes, transitions, and screens.
-- `electron/` — secure window shell, IPC, local SQLite data, exports, and backups.
-- `shared/` — TypeScript types, currency catalog, and built-in palettes.
-- `tests/` — amount, reporting, transaction, theme, and backup tests.
+- `src/`: React interface, charts, themes, transitions, and screens.
+- `electron/`: secure window shell, IPC, local SQLite data, exports, and backups.
+- `shared/`: TypeScript types, currency catalog, and built-in palettes.
+- `tests/`: amount, reporting, transaction, theme, and backup tests.
 
 Editing source does not change an existing EXE. Rebuild after editing:
 
@@ -52,8 +56,8 @@ npm run package
 
 ## Output files
 
-- `release-electron\Tallypine-Setup-1.0.0.exe` — normal Windows installer.
-- `release-electron\Tallypine-Portable-1.0.0.exe` — portable executable.
+- `release-electron\Tallypine-Setup-1.0.0.exe`: normal Windows installer.
+- `release-electron\Tallypine-Portable-1.0.0.exe`: portable executable.
 
 The app uses Electron's secure defaults: context isolation, a sandboxed renderer, no Node integration in the webpage, local packaged content, a restrictive content security policy, trusted-sender checks, and a narrow typed preload API.
 

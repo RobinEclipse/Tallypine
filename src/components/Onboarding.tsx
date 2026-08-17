@@ -36,7 +36,7 @@ export function Onboarding({ initialCurrency, onComplete, notify }: OnboardingPr
       <div className={`onboarding-page ${choosing ? "hidden" : "visible"}`}>
         <div className="welcome-hero">
           <img src={logo} alt="Tallypine" />
-          <div><span>TALLYPINE 1.0</span><h1>Welcome to Tallypine</h1><p>A calmer way to track every transaction—privately and completely offline.</p></div>
+          <div><span>TALLYPINE 1.0</span><h1>Welcome to Tallypine</h1><p>A calmer way to track every transaction, privately and completely offline.</p></div>
         </div>
         <div className="welcome-card card">
           <div className="welcome-copy"><h2>Set up your ledger</h2><p>Choose how amounts should appear and enter the balance you have now. Both can be changed later.</p></div>

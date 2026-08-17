@@ -2,7 +2,7 @@
   "name": "tallypine-desktop",
   "version": "1.0.0",
   "private": true,
-  "description": "Tallypine — a private, offline transaction tracker",
+  "description": "Tallypine: a private, offline transaction tracker",
   "main": "dist-electron/electron/main.js",
   "author": "Tallypine",
   "license": "UNLICENSED",
