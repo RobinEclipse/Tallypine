@@ -26,7 +26,7 @@ When Tallypine opens for the first time, it asks for your display currency and s
 
 ## Your data and privacy
 
-- Tallypine works offline after installation.
+- Tallypine works offline after it has been downloaded.
 - Your transactions, settings, themes, and backups stay on your PC.
 - There is no login, cloud sync, analytics, or advertising.
 - Installed builds store their data in `%LOCALAPPDATA%\Tallypine`.
@@ -51,7 +51,7 @@ The generated files are placed in `release-electron` and copied to the workspace
 
 ## Development transparency
 
-Tallypine was created with help from AI-assisted development tools. The project owner reviews and controls the code, releases, and product decisions. This was made purely for personal use but it was decided to release it publicly. 
+Tallypine was created with help from AI-assisted development tools. The project owner reviews and controls the code, releases, and product decisions. It was originally made for personal use and later released publicly.
 
 ## License
 

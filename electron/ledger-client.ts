@@ -19,6 +19,24 @@ interface WorkerError {
   stack?: string;
 }
 
+interface WorkerReadyMessage {
+  type: "ready";
+}
+
+interface WorkerReadyErrorMessage {
+  type: "ready-error";
+  error: WorkerError;
+}
+
+interface WorkerResultMessage {
+  type: "result";
+  id: number;
+  result?: unknown;
+  error?: WorkerError;
+}
+
+type WorkerMessage = WorkerReadyMessage | WorkerReadyErrorMessage | WorkerResultMessage;
+
 interface PendingRequest {
   resolve(value: unknown): void;
   reject(error: Error): void;
@@ -28,6 +46,21 @@ function revivedError(payload: WorkerError): Error {
   const error = new Error(payload.message);
   if (payload.stack) error.stack = payload.stack;
   return error;
+}
+
+function isWorkerError(value: unknown): value is WorkerError {
+  return typeof value === "object" && value !== null && typeof (value as { message?: unknown }).message === "string";
+}
+
+function parseWorkerMessage(value: unknown): WorkerMessage | null {
+  if (typeof value !== "object" || value === null || typeof (value as { type?: unknown }).type !== "string") return null;
+  const message = value as { type: string; id?: unknown; error?: unknown; result?: unknown };
+  if (message.type === "ready") return { type: "ready" };
+  if (message.type === "ready-error" && isWorkerError(message.error)) return { type: "ready-error", error: message.error };
+  if (message.type === "result" && typeof message.id === "number" && Number.isSafeInteger(message.id)) {
+    return { type: "result", id: message.id, result: message.result, error: isWorkerError(message.error) ? message.error : undefined };
+  }
+  return null;
 }
 
 export class LedgerClient {
@@ -40,7 +73,8 @@ export class LedgerClient {
   constructor(path: string) {
     this.worker = new Worker(join(__dirname, "ledger-worker.js"), { workerData: { path } });
     this.readyPromise = new Promise((resolve, reject) => {
-      const ready = (message: any) => {
+      const ready = (value: unknown) => {
+        const message = parseWorkerMessage(value);
         if (message?.type === "ready") {
           this.worker.off("message", ready);
           resolve();
@@ -51,7 +85,8 @@ export class LedgerClient {
       };
       this.worker.on("message", ready);
     });
-    this.worker.on("message", (message: any) => {
+    this.worker.on("message", (value: unknown) => {
+      const message = parseWorkerMessage(value);
       if (message?.type !== "result") return;
       const request = this.pending.get(message.id);
       if (!request) return;
