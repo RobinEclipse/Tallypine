@@ -1,60 +1,58 @@
-# Tallypine 1.0
+# Tallypine
 
-Tallypine is a private, offline Windows transaction tracker built as a single Electron application with a local SQLite database.
+Tallypine is a private, offline Windows desktop app for tracking the money you receive and spend.
 
-## What stays the same
+**Tallypine 1.0.0 is the first public release and the current latest release.**
 
-- No login, cloud service, analytics, or internet connection.
-- Installed builds keep data in `%LOCALAPPDATA%\Tallypine\tallypine.db`. The portable build keeps `Tallypine Data` beside its EXE and copies existing installed data there on first launch.
-- Starting balance, transactions, categories, reports, currencies, themes, CSV export, and `.tpbackup` backups are preserved.
-- Dates begin at 2026 and future dates remain blocked.
-- The product and data version remain Tallypine 1.0.
+## What Tallypine does
 
-## Development transparency
+- Track Money In and Money Out transactions.
+- Keep an always-current balance from your starting balance and transactions.
+- Review spending by week, month, year, or all time.
+- See spending by category and balance over time charts.
+- Choose from a full currency list, with currency name and country included.
+- Create, edit, archive, and organize transaction categories.
+- Export reports as CSV files and create complete local backups.
+- Choose Eclipse, Cozy, Sunshine, or build a detailed custom theme.
 
-Tallypine was created with help from AI-assisted development tools. The project owner reviews and controls the code, releases, and product decisions.
+## Download and use
 
-## Why the interface is smoother
+Get the current installer or portable app from the [latest release](../../releases/latest).
 
-Dashboard, Settings, and Currency are mounted inside one renderer and kept ready. Navigation uses a compositor-driven CSS curtain and opacity fade; it does not create or animate extra Windows windows. Themes update CSS color variables without rebuilding controls. The custom title bar uses Electron's supported draggable region.
+- **Installer:** installs Tallypine normally on Windows.
+- **Portable:** runs without installation and keeps its app data in a `Tallypine Data` folder beside the EXE.
 
-The application window is hidden until the database, theme, logo, and initial interface are ready.
+When Tallypine opens for the first time, it asks for your display currency and starting balance. No account or login is required.
 
-## Edit and run the source
+## Your data and privacy
+
+- Tallypine works offline after installation.
+- Your transactions, settings, themes, and backups stay on your PC.
+- There is no login, cloud sync, analytics, or advertising.
+- Installed builds store their data in `%LOCALAPPDATA%\Tallypine`.
+- Local files use your Windows account permissions. They are not password-encrypted.
+
+## Build from source
 
 Requirements: Windows, Node.js 22 or newer, and npm.
 
 ```powershell
-npm install
+npm ci
 npm run dev
 ```
 
-The main source areas are:
-
-- `src/`: React interface, charts, themes, transitions, and screens.
-- `electron/`: secure window shell, IPC, local SQLite data, exports, and backups.
-- `shared/`: TypeScript types, currency catalog, and built-in palettes.
-- `tests/`: amount, reporting, transaction, theme, and backup tests.
-
-Editing source does not change an existing EXE. Rebuild after editing:
+To build the installer and portable EXE:
 
 ```powershell
 .\build.ps1
 ```
 
-Or run the individual commands:
+The generated files are placed in `release-electron` and copied to the workspace output folder.
 
-```powershell
-npm run typecheck
-npm test
-npm run package
-```
+## Development transparency
 
-## Output files
+Tallypine was created with help from AI-assisted development tools. The project owner reviews and controls the code, releases, and product decisions.
 
-- `release-electron\Tallypine-Setup-1.0.0.exe`: normal Windows installer.
-- `release-electron\Tallypine-Portable-1.0.0.exe`: portable executable.
+## License
 
-The app uses Electron's secure defaults: context isolation, a sandboxed renderer, no Node integration in the webpage, local packaged content, a restrictive content security policy, trusted-sender checks, and a narrow typed preload API.
-
-Release builds are ready for Electron Builder's Windows code-signing environment variables. A real publisher signature requires a certificate issued to the person or organization distributing Tallypine; unsigned local builds will still trigger Windows publisher warnings.
+Tallypine is available under the [MIT License](LICENSE).
