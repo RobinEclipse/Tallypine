@@ -28,6 +28,8 @@ jobs:
 
       - name: Test and package Tallypine
         run: npm run package
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
 
       - name: Create or update the GitHub release
         shell: pwsh
