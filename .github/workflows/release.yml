@@ -1,0 +1,42 @@
+name: Build and publish Tallypine
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build Windows release
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out the tagged source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test and package Tallypine
+        run: npm run package
+
+      - name: Create or update the GitHub release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TALLYPINE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release view $env:TALLYPINE_TAG --repo $env:GITHUB_REPOSITORY 2>$null
+          if ($LASTEXITCODE -ne 0) {
+            gh release create $env:TALLYPINE_TAG --repo $env:GITHUB_REPOSITORY --title "Tallypine v$env:TALLYPINE_TAG" --generate-notes
+          }
+          gh release upload $env:TALLYPINE_TAG "release-electron/Tallypine-Setup-$env:TALLYPINE_TAG.exe" "release-electron/Tallypine-Portable-$env:TALLYPINE_TAG.exe" --repo $env:GITHUB_REPOSITORY --clobber
